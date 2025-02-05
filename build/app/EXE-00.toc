@@ -931,8 +931,8 @@
  [],
  False,
  False,
- 1738262048,
+ 1738263839,
  [('run',
    '/home/humberto.visgueira/Documentos/programacao/Genetor_hash/.venv/lib/python3.10/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run',
    'EXECUTABLE')],
- '/lib/x86_64-linux-gnu/libpython3.10.so.1.0')
+ '/lib/x86_64-linux-gnu/libpython3.10.so')

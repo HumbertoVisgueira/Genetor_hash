@@ -3,18 +3,20 @@ import customtkinter as ctk
 import os
 from tkinter import filedialog, messagebox
 import gerador_hash as gh
-
 import hashlib
 
 def gerar_hash_sha256(texto):
-    #criando um objeto hash SHA-256
-    sha256= hashlib.sha256()
-
-    #Atualizando o objeto hash com texto (convertido para hash)
-    sha256.update(texto.encode('utf-8'))
-
-    #Retornar o hash gerado em formato hexadecimal
-    return sha256.hexdigest()
+    try:
+        with open(texto, 'r', newline='', encoding='utf-8') as f:
+            conteudo = f.read()
+        # Como alternativa, leia em modo binário para ignorar problemas de quebra de linha:
+        # with open(caminho_arquivo, 'rb') as f:
+        #     conteudo = f.read()
+        hashed = hashlib.sha256(conteudo.encode('utf-8')).hexdigest()
+        return hashed
+    except Exception as e:
+        print(f"Erro ao gerar hash do arquivo: {e}")
+        return None
 
 
 def selecionar_arquivo():
@@ -24,7 +26,7 @@ def selecionar_arquivo():
 def gerar_hash(caminho_arquivo):
     if caminho_arquivo:
         try:
-            hash_gerado = gh.gerar_hash_sha256(caminho_arquivo)
+            hash_gerado = gerar_hash_sha256(caminho_arquivo)
             caixa_texto.delete("1.0", ctk.END)
             caixa_texto.insert("1.0", hash_gerado)
             return hash_gerado
@@ -54,7 +56,7 @@ def gerar_hashes_pasta(pasta):
             for arquivo in os.listdir(pasta):
                 caminho_arquivo = os.path.join(pasta, arquivo)
                 if os.path.isfile(caminho_arquivo):
-                    hash_gerado = gh.gerar_hash_sha256(caminho_arquivo)
+                    hash_gerado = gerar_hash_sha256(caminho_arquivo)
                     if hash_gerado:
                         hashes[arquivo] = hash_gerado
                         print(f"Hash de {arquivo}: {hash_gerado}")

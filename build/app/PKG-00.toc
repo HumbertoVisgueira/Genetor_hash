@@ -923,7 +923,7 @@
   ('setuptools/_vendor/wheel-0.43.0.dist-info/INSTALLER',
    '/home/humberto.visgueira/Documentos/programacao/Genetor_hash/.venv/lib/python3.10/site-packages/setuptools/_vendor/wheel-0.43.0.dist-info/INSTALLER',
    'DATA')],
- 'libpython3.10.so.1.0',
+ 'libpython3.10.so',
  False,
  False,
  False,
