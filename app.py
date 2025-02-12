@@ -7,16 +7,25 @@ import hashlib
 
 def gerar_hash_sha256(texto):
     try:
-        with open(texto, 'r', newline='', encoding='utf-8') as f:
+        with open(texto, 'rb') as f:
             conteudo = f.read()
-        # Como alternativa, leia em modo binário para ignorar problemas de quebra de linha:
-        # with open(caminho_arquivo, 'rb') as f:
-        #     conteudo = f.read()
-        hashed = hashlib.sha256(conteudo.encode('utf-8')).hexdigest()
+            hashed = hashlib.sha256(conteudo).hexdigest()
         return hashed
     except Exception as e:
         print(f"Erro ao gerar hash do arquivo: {e}")
         return None
+
+    #   try:
+  #      with open(texto, 'rb', newline='', encoding='utf-8') as f:
+   #         conteudo = f.read()
+        # Como alternativa, leia em modo binário para ignorar problemas de quebra de linha:
+        # with open(caminho_arquivo, 'rb') as f:
+        #     conteudo = f.read()
+    #    hashed = hashlib.sha256(conteudo.encode('utf-8')).hexdigest()
+     #   return hashed
+    #except Exception as e:
+     #   print(f"Erro ao gerar hash do arquivo: {e}")
+      #  return None
 
 
 def selecionar_arquivo():
